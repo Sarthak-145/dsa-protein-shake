@@ -8,6 +8,7 @@
         "set": "cpp",
         "queue": "cpp",
         "stack": "cpp",
-        "format": "cpp"
+        "format": "cpp",
+        "ostream": "cpp"
     }
 }

@@ -14,7 +14,7 @@ char letter = 'S';
 // char letter2 = "S"; wtf, it's just doesn't work ("")
 
 // not built in though
-string name = "Epicurious";
+std::string name = "Epicurious";
 
 // 1 byte like char
 bool isStudent = true;
