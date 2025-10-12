@@ -21,7 +21,9 @@ bool isStudent = true;
 
 int main() {
     // boolean reurns 0/1
-    std::cout << isStudent;
+    std::cout << isStudent << std::endl;
+    // sizeof() gives memory space in bytes
+    std::cout << sizeof(name) << " bytes";
 }
 
 // There's a dude named "auto" which auto assigns data type.
