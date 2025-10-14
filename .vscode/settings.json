@@ -9,6 +9,7 @@
         "queue": "cpp",
         "stack": "cpp",
         "format": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "array": "cpp"
     }
 }
