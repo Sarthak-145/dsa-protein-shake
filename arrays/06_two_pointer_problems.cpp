@@ -15,6 +15,22 @@ int removeDuplicates(int array[], int size) {
     return i + 1;
 }
 
+// move all zeroes at the end maintaining the remaining order as it is.
+void moveZeroes(int array[], int size) {
+    int i = 0;
+    for (int j = 0; j < size; j++) {
+        if (array[j] != 0) {
+            array[i] = array[j];
+            i++;
+        }
+    }
+
+    while (i < size) {
+        array[i] = 0;
+        i++;
+    }
+}
+
 void printArray(int array[], int size) {
     for (int i = 0; i < size; i++) {
         cout << array[i] << " ";
@@ -30,8 +46,19 @@ int main() {
     cout << "Actual size of the array: " << size << endl;
 
     cout << "Length of the array after removing duplicates is: ";
-    cout << removeDuplicates(numbers, size);
+    cout << removeDuplicates(numbers, size) << endl << endl;
     // This doesn't work as we're not removing any element from the array.
     //  cout << "Array after removing duplicates is: ";
     //  printArray(numbers, size);
+
+    // for moveZeroes function
+    cout << "This is for moving zeroes function: \n";
+    int random[] = {12, 0, 43, 56, 29, 0, 38, 0, 3};
+    int sizeRandom = sizeof(random) / sizeof(random[0]);
+    cout << "Original array is: ";
+    printArray(random, sizeRandom);
+
+    moveZeroes(random, sizeRandom);
+    cout << "After moving all the zeroes to the end: ";
+    printArray(random, sizeRandom);
 }
