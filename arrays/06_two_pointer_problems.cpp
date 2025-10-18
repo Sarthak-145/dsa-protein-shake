@@ -52,6 +52,27 @@ bool twoSome(int array[], int size, int target, int &firstIndex,
     return false;
 }
 
+int maxWater(int array[], int size) {
+    int left = 0;
+    int right = size - 1;
+    int maxArea = 0;
+
+    while (left < right) {
+        int width = right - left;
+        int height = min(array[left], array[right]);
+
+        int area = width * height;
+        maxArea = max(area, maxArea);
+
+        if (array[left] < array[right]) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+    return maxArea;
+}
+
 void printArray(int array[], int size) {
     for (int i = 0; i < size; i++) {
         cout << array[i] << " ";
@@ -92,5 +113,14 @@ int main() {
     printArray(numbers3, size3);
     twoSome(numbers3, size3, 53, firstIndex, secondIndex);
     cout << "First index is: " << firstIndex << "\n";
-    cout << "Second index is: " << secondIndex << "\n";
+    cout << "Second index is: " << secondIndex << "\n\n";
+
+    // testing maxArea function
+    // Array has been copied cause I want to test answer as well!
+    int heightArray[] = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+    int sizeHeight = sizeof(heightArray) / sizeof(heightArray[0]);
+    cout << "Array we're working with is: ";
+    printArray(heightArray, sizeHeight);
+    cout << "Max water which can be accomodated is: ";
+    cout << maxWater(heightArray, sizeHeight);
 }
