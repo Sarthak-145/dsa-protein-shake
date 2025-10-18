@@ -31,6 +31,27 @@ void moveZeroes(int array[], int size) {
     }
 }
 
+// Give indices of two ints when sum is given (twosum they say)
+bool twoSome(int array[], int size, int target, int &firstIndex,
+             int &secondIndex) {
+    int left = 0;
+    int right = size - 1;
+
+    while (left < right) {
+        int sum = array[left] + array[right];
+        if (sum == target) {
+            firstIndex = left;
+            secondIndex = right;
+            return true;
+        } else if (sum < target) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+    return false;
+}
+
 void printArray(int array[], int size) {
     for (int i = 0; i < size; i++) {
         cout << array[i] << " ";
@@ -61,4 +82,15 @@ int main() {
     moveZeroes(random, sizeRandom);
     cout << "After moving all the zeroes to the end: ";
     printArray(random, sizeRandom);
+    cout << "\n\n";
+
+    // testing twoSum function
+    int firstIndex, secondIndex;
+    int numbers3[] = {2, 4, 5, 7, 9, 26, 27, 32, 46, 57, 68, 72, 99};
+    int size3 = sizeof(numbers3) / sizeof(numbers3[0]);
+    cout << "We are working with this array: ";
+    printArray(numbers3, size3);
+    twoSome(numbers3, size3, 53, firstIndex, secondIndex);
+    cout << "First index is: " << firstIndex << "\n";
+    cout << "Second index is: " << secondIndex << "\n";
 }
