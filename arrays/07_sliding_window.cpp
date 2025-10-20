@@ -1,3 +1,4 @@
+#include <climits>
 #include <iostream>
 using namespace std;
 
@@ -48,6 +49,44 @@ void firstNegative(int array[], int size, int k) {
     }
 }
 
+// finding smallest subarray for given target where target <= sum of subarray.
+int smallestSubarray(int array[], int size, int target) {
+    int windowsum = 0;
+    int start = 0;
+    int minLegth = INT_MAX;
+    for (int end = 0; end < size; end++) {
+        windowsum += array[end];
+
+        // This logic is hard shit, spent around 1-2 hrs 🫥
+        // First thought I should write considering "=" instead of ">="
+        while (windowsum >= target) {
+            minLegth = min(minLegth, end - start + 1);
+            windowsum -= array[start];
+            start++;
+        }
+    }
+    return minLegth;
+}
+
+// This guy returns maxsum whos avg is less than threshold.
+int maxsumWithThreshold(int array[], int size, int k, int threshold) {
+    int windowsum = 0;
+
+    for (int i = 0; i < k; i++) {
+        windowsum += array[i];
+    }
+    int maxsum = ((windowsum / k) < threshold) ? windowsum : 0;
+
+    for (int i = k; i < size; i++) {
+        windowsum = windowsum - array[i - k] + array[k];
+
+        if ((windowsum / k) < threshold) {
+            maxsum = max(maxsum, windowsum);
+        }
+    }
+    return maxsum;
+}
+
 void printArray(int array[], int size) {
     for (int i = 0; i < size; i++) {
         cout << array[i] << " ";
@@ -79,4 +118,17 @@ int main() {
     cout << "Maximum times a number can repeat again is k: Here it is: 3 \n";
     firstNegative(array, arraySize, 3);
     cout << "\n\n";
+
+    // testing shortest subarray problem
+    cout << "We are working with the array: ";
+    printArray(numbers, size);
+    cout << "minumum length of the subarray is: ";
+    cout << smallestSubarray(numbers, size, 57);
+    cout << "\n\n";
+
+    // testing threshold function
+    cout << "array we are working with is: ";
+    printArray(numbers, size);
+    cout << "maximum sum when avg of elements is less than threshold is: ";
+    cout << maxsumWithThreshold(numbers, size, 3, 50);
 }
