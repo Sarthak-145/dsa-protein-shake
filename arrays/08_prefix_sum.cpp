@@ -56,6 +56,17 @@ int countSubarrayWithSum(int array[], int size, int k) {
     return count;
 }
 
+// returns the maximum sum of an subarray with number of elements k
+// it's kinda sliding window + using prefix sum
+int maxsumWithSize(int array[], int prefix[], int size, int k) {
+    int maxsum = prefix[k - 1];
+    for (int i = k; i < size; i++) {
+        int currentsum = prefix[i] - prefix[i - k];
+        maxsum = max(maxsum, currentsum);
+    }
+    return maxsum;
+}
+
 void printArray(int array[], int size) {
     for (int i = 0; i < size; i++) {
         cout << array[i] << " ";
@@ -86,4 +97,12 @@ int main() {
     // testing number of subArrays with sum k
     cout << "Number of subarrays with the sum k = 5, is: ";
     cout << countSubarrayWithSum(numbers, size, 5);
+    cout << "\n\n";
+
+    // testing maxsum with given subarray size
+    cout << "Array we are working with is: ";
+    printArray(numbers, size);
+    cout << "maximum sum of consecutive (k=3) elements is: ";
+    cout << maxsumWithSize(numbers, prefix, size, 3);
+    cout << "\n\n";
 }
