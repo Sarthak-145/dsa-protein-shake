@@ -4,4 +4,7 @@
 #crazy cpp created files.
 *.exe
 trialRoom.cpp
+
+#List of concepts and planings
 array.txt
+string.txt
