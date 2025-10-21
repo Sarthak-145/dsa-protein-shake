@@ -37,8 +37,23 @@ int findEquiIndex(int array[], int size) {
         // Also updating leftsum is important.
         leftsum += array[i];
     }
-    cout << "Equillibrium doesn't exist!\n";
+    cout << "Equillibrium doesn't exist!\n\n";
     return -1;
+}
+
+// function to count number of subArrays with sum = k;
+int countSubarrayWithSum(int array[], int size, int k) {
+    int count = 0;
+    for (int i = 0; i < size; i++) {
+        int sum = 0;
+        for (int j = i; j < size; j++) {
+            sum += array[j];
+            if (sum == k) {
+                count++;
+            }
+        }
+    }
+    return count;
 }
 
 void printArray(int array[], int size) {
@@ -66,4 +81,9 @@ int main() {
     int equiArray[] = {1, 2, 3, 4, 6};
     int equiSize = sizeof(equiArray) / sizeof(equiArray[0]);
     findEquiIndex(equiArray, equiSize);
+    cout << "\n\n";
+
+    // testing number of subArrays with sum k
+    cout << "Number of subarrays with the sum k = 5, is: ";
+    cout << countSubarrayWithSum(numbers, size, 5);
 }
