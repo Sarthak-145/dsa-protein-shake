@@ -24,6 +24,24 @@ void bubbleSort(int array[], int size) {
     }
 }
 
+// Opposite of bubble, find smallest number and place it at the start.
+void selectionSort(int array[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        int minValue = i;
+
+        for (int j = i; j < size; j++) {
+            if (array[j] < array[minValue]) {
+                minValue = j;
+            }
+        }
+        if (minValue != i) {
+            int temp = array[i];
+            array[i] = array[minValue];
+            array[minValue] = temp;
+        }
+    }
+}
+
 void printArray(int array[], int size) {
     for (int i = 0; i < size; i++) {
         cout << array[i] << " ";
@@ -32,11 +50,20 @@ void printArray(int array[], int size) {
 }
 
 int main() {
-    int numbers[] = {57, 37, 86, 24, 2, 59, 29, 99, 7};
-    int size = sizeof(numbers) / sizeof(numbers[0]);
+    int numbers1[] = {57, 37, 86, 24, 2, 59, 29, 99, 7};
+    int size1 = sizeof(numbers1) / sizeof(numbers1[0]);
     cout << "Array we are taking to sort is: ";
-    printArray(numbers, size);
-    bubbleSort(numbers, size);
+    printArray(numbers1, size1);
+    bubbleSort(numbers1, size1);
     cout << "Sorted array is: ";
-    printArray(numbers, size);
+    printArray(numbers1, size1);
+
+    // testing selectionSort
+    int numbers2[] = {1, 4, 2, 5, 6, 8, 3};
+    int size2 = sizeof(numbers2) / sizeof(numbers2[0]);
+    cout << "Array we are working with is: ";
+    printArray(numbers2, size2);
+    selectionSort(numbers2, size2);
+    cout << "Sorted array is: ";
+    printArray(numbers2, size2);
 }
