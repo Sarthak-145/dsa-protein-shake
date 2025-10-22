@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+// All these three algos have same space and time complexity
 // complexity -> Time: O(n^2), space: O(1)
 void bubbleSort(int array[], int size) {
     for (int i = 0; i < size - 1; i++) {
@@ -42,6 +43,28 @@ void selectionSort(int array[], int size) {
     }
 }
 
+void insertionSort(int array[], int size) {
+    for (int i = 0; i < size; i++) {
+        int key = array[i];
+        int j = i - 1;
+
+        while (j >= 0 && array[j] > key) {
+            array[j + 1] = array[j];
+            j--;
+        }
+        array[j + 1] = key;
+    }
+}
+
+bool isSorted(int array[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        if (array[i] > array[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void printArray(int array[], int size) {
     for (int i = 0; i < size; i++) {
         cout << array[i] << " ";
@@ -50,6 +73,7 @@ void printArray(int array[], int size) {
 }
 
 int main() {
+    cout << "TESTING BUBBLE SORT\n";
     int numbers1[] = {57, 37, 86, 24, 2, 59, 29, 99, 7};
     int size1 = sizeof(numbers1) / sizeof(numbers1[0]);
     cout << "Array we are taking to sort is: ";
@@ -57,8 +81,10 @@ int main() {
     bubbleSort(numbers1, size1);
     cout << "Sorted array is: ";
     printArray(numbers1, size1);
+    cout << "\n\n";
 
     // testing selectionSort
+    cout << "TESTING SELECTION SORT\n";
     int numbers2[] = {1, 4, 2, 5, 6, 8, 3};
     int size2 = sizeof(numbers2) / sizeof(numbers2[0]);
     cout << "Array we are working with is: ";
@@ -66,4 +92,21 @@ int main() {
     selectionSort(numbers2, size2);
     cout << "Sorted array is: ";
     printArray(numbers2, size2);
+    cout << "\n\n";
+
+    // testing insertionSort
+    cout << "TESTING INSERTION SORT\n";
+    int numbers3[] = {3, 2, 5, 7, 4, 8, 1, 9, 6};
+    int size3 = sizeof(numbers3) / sizeof(numbers3[0]);
+    cout << "Original array is: ";
+    printArray(numbers3, size3);
+    insertionSort(numbers3, size3);
+    cout << "Sorted array is: ";
+    printArray(numbers3, size3);
+    cout << "\n\n";
+
+    // testing boolean function
+    cout << isSorted(numbers1, size1) << endl;
+    cout << isSorted(numbers2, size2) << endl;
+    cout << isSorted(numbers3, size3) << endl;
 }
