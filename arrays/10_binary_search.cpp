@@ -86,6 +86,16 @@ int findLastOcc(int array[], int size, int target) {
     return result;
 }
 
+int countTarget(int array[], int size, int target) {
+    int left = findFirstOcc(array, size, target);
+    if (left == -1) {
+        return 0;
+    }
+    int right = findLastOcc(array, size, target);
+
+    return right - left + 1;
+}
+
 void printArray(int array[], int size) {
     for (int i = 0; i < size; i++) {
         cout << array[i] << " ";
@@ -116,5 +126,9 @@ int main() {
     // test last occ
     cout << "Index of the last occ of ele is: ";
     cout << findLastOcc(array, size, 34);
+    cout << "\n\n";
+
+    // testing count function
+    cout << "Target is found " << countTarget(array, size, 34) << " times!";
     cout << "\n\n";
 }
