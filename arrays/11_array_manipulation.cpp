@@ -22,8 +22,8 @@ void mergeSortedArray(int array1[], int size1, int array2[], int size2,
     }
 }
 
-void intersection(int array1[], int size1, int array2[], int size2,
-                  int result[]) {
+int intersection(int array1[], int size1, int array2[], int size2,
+                 int result[]) {
     int k = 0;
 
     for (int i = 0; i < size1; i++) {
@@ -43,6 +43,7 @@ void intersection(int array1[], int size1, int array2[], int size2,
             }
         }
     }
+    return k;
 }
 
 void printArray(int array[], int size) {
@@ -74,7 +75,7 @@ int main() {
     int sz1 = sizeof(arr1) / sizeof(arr1[0]);
     int sz2 = sizeof(arr2) / sizeof(arr2[0]);
     cout << "commom elements are: ";
-    int result2[max(sz1, sz2)];
-    intersection(arr1, sz1, arr2, sz2, result2);
-    printArray(result2, max(sz1, sz2));
+    int result2[min(sz1, sz2)];
+    int intersectionSize = intersection(arr1, sz1, arr2, sz2, result2);
+    printArray(result2, intersectionSize);
 }
