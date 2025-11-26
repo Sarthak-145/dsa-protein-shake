@@ -1,10 +1,15 @@
 #I think I should just push all the settings, cause I am dumb with cpp rn.
 # .vscode/
 
-#crazy cpp created files.
-*.exe
-trialRoom.cpp
 
-#List of concepts and planings
-array.txt
-string.txt
+
+
+# Ignore all compiled binaries (no extension)
+# In linux, files don't have extension exe so..
+*
+!*/
+!.gitignore
+!*.cpp
+!*.h
+!*.hpp
+!.vscode/
