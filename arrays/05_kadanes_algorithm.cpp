@@ -37,7 +37,7 @@ int sameAndBest(int array[], int size) {
     int maxsum = array[0];
     int currentsum = array[0];
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 1; i < size; i++) {
         currentsum += array[i];
 
         maxsum = max(maxsum, currentsum);

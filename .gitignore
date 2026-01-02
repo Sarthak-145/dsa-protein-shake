@@ -13,3 +13,4 @@
 !*.h
 !*.hpp
 !.vscode/
+test.cpp
