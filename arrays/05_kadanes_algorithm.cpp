@@ -1,10 +1,12 @@
 #include <iostream>
+#include <algorithm>  //some env needs this 
 using namespace std;
 
 // problem: Find the max sum of contigious subarray.
 
-// O(n^3) => boomer thing 😂
 int maxSubarray(int array[], int size) {
+    //empty array caes
+    if (size == 0) return 0;
     int maxsum = array[0];
 
     for (int i = 0; i < size; i++) {
@@ -19,7 +21,8 @@ int maxSubarray(int array[], int size) {
     return maxsum;
 }
 
-int sameButBetter(int array[], int size) {
+int sameButBetter(int array[], int size) {\
+    if (size == 0) return 0;
     int maxsum = array[0];
 
     for (int i = 0; i < size; i++) {
@@ -34,17 +37,15 @@ int sameButBetter(int array[], int size) {
 
 // kadane dude's algo
 int sameAndBest(int array[], int size) {
+    if (size == 0) return 0;
     int maxsum = array[0];
     int currentsum = array[0];
 
+    //start from i=1, cause array[0] is already added.
     for (int i = 1; i < size; i++) {
-        currentsum += array[i];
+        currentsum = max(currentsum + array[i], array[i]);
 
         maxsum = max(maxsum, currentsum);
-
-        if (currentsum < 0) {
-            currentsum = 0;
-        }
     }
     return maxsum;
 }
