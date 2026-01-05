@@ -7,7 +7,7 @@ int removeDuplicates(int array[], int size) {
     int i = 0;
 
     for (int j = 1; j < size; j++) {
-        if (array[j] != array[i]) {
+        if (array[i] != array[j]) {
             i++;
             array[i] = array[j];
         }
@@ -73,6 +73,29 @@ int maxWater(int array[], int size) {
     return maxArea;
 }
 
+
+//rain water trapping. this is the hardest one.
+int totalWater(int array[], int size) {
+    int left = 0;
+    int right = size - 1;
+    int leftMax = 0;
+    int rightMax = 0;
+    int water = 0;
+
+    while (left < right) {
+        if(array[left] <= array[right]) {
+            leftMax = max(leftMax, array[left]);
+            water += leftMax - array[left];
+            left++;
+        } else {
+            rightMax = max(rightMax, array[right]);
+            water += rightMax - array[right];
+            right--;
+        }
+    }
+    return water;
+}
+
 void printArray(int array[], int size) {
     for (int i = 0; i < size; i++) {
         cout << array[i] << " ";
@@ -117,10 +140,12 @@ int main() {
 
     // testing maxArea function
     // Array has been copied cause I want to test answer as well!
-    int heightArray[] = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+    int heightArray[] = {1, 8, 6, 2, 5, 4, 8, 3, 7}; //famous array
     int sizeHeight = sizeof(heightArray) / sizeof(heightArray[0]);
     cout << "Array we're working with is: ";
     printArray(heightArray, sizeHeight);
     cout << "Max water which can be accomodated is: ";
-    cout << maxWater(heightArray, sizeHeight);
+    cout << maxWater(heightArray, sizeHeight) << endl;
+
+    cout << "rain water trapped in the array is: " << totalWater(heightArray, sizeHeight) << endl;
 }
