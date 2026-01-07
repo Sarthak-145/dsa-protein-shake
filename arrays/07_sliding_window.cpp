@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 
+//maxsum brute force
 int maxSum(int array[], int size, int k) {
     int maxsum = array[0];
     for (int i = 0; i <= size - k; i++) {
@@ -14,6 +15,8 @@ int maxSum(int array[], int size, int k) {
     return maxsum;
 }
 
+
+//fixed window size => maxsum of window size k
 int maxSumBest(int array[], int size, int k) {
     int windowsum = 0;
 
@@ -29,6 +32,8 @@ int maxSumBest(int array[], int size, int k) {
     return maxsum;
 }
 
+
+//First negative number in each window
 void firstNegative(int array[], int size, int k) {
     cout << "First negative value you're looking for in window " << k
          << " is: ";
@@ -47,6 +52,24 @@ void firstNegative(int array[], int size, int k) {
             cout << 0 << " ";
         }
     }
+}
+
+//Longest subarray with sum ≤ K
+int maxLength(int array[], int size, int k) {
+    int left = 0;
+    int maxsum = 0;
+    int maxlength = 0;
+
+    for (int i = 0; i < size; i++) {
+        maxsum += array[i];
+
+        while (maxsum >= k) {
+            maxsum -= array[left];
+            left++;
+        }
+        maxlength = max(maxlength, i - left + 1);
+    }
+    return maxlength;
 }
 
 // finding smallest subarray for given target where target <= sum of subarray.
