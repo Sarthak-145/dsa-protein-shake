@@ -4,9 +4,10 @@
 using namespace std;
 
 int SubWithSumK(vector<int>& array, int k) {
-    unordered_map<int int> freq;
+    unordered_map<int, int> freq;
     int count = 0;
     int prefixsum = 0;
+    freq[0] = 1;
 
     for (int x : array) {
         prefixsum += x;
