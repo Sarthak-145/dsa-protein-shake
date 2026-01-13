@@ -46,6 +46,19 @@ int totalValidBrackets(const string& str) {
     return mxlength;
 }
 
+int leftOverBrackets(const string& str) {
+    stack<char> st;
+    for (int i=0; i< str.length(); i++) {
+        char c = str[i];
+        if (c == '(') st.push(c);
+        else {
+            if (st.empty()) st.push(c);
+            else st.pop();
+        }
+    }
+    return st.size();
+}
+
 int main() {
     // string str;
     // cout << "Give some brckets input: ";
@@ -57,4 +70,5 @@ int main() {
     // }
 
     cout << "Maximum valid bracket length of the string is: " << totalValidBrackets("))(())()))") << "\n\n";
+    cout << "Number of brackets required to make a string valid: "<< leftOverBrackets("(()()))()") << "\n\n";
 }
