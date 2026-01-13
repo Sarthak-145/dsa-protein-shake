@@ -27,13 +27,34 @@ bool validBrackets(const string& str) {
     else return false;
 }
 
-int main() {
-    string str;
-    cout << "Give some brckets input: ";
-    cin >> str;
-    if (validBrackets(str)) {
-        cout << "The bracket closing seq is right!" << "\n";
-    } else {
-        cout << "Brckets aren't closed properly." << "\n";
+int totalValidBrackets(const string& str) {
+    stack<int> st;
+    int mxlength = 0;
+    st.push(-1);
+    for (int i =0; i < str.length(); i++) {
+        if (str[i] == '(') {
+            st.push(i);
+        } else {
+            st.pop();
+            if (st.empty()) {
+                st.push(i);
+            } else {
+                mxlength = (i - st.top()) > mxlength ? (i - st.top()) : mxlength;
+            }
+        }
     }
+    return mxlength;
+}
+
+int main() {
+    // string str;
+    // cout << "Give some brckets input: ";
+    // cin >> str;
+    // if (validBrackets(str)) {
+    //     cout << "The bracket closing seq is right!" << "\n";
+    // } else {
+    //     cout << "Brckets aren't closed properly." << "\n\n";
+    // }
+
+    cout << "Maximum valid bracket length of the string is: " << totalValidBrackets("))(())()))") << "\n\n";
 }
