@@ -18,6 +18,23 @@ vector<int> nextGreater(vector<int>& nums) {
     return ngeNums;
 } 
 
+vector<int> previousGreater(vector<int>& nums) {
+    int size = nums.size();
+    stack<int> st;
+    vector<int> pge(size, -1);
+    st.push(size - 1);
+
+    for (int i = size - 2; i >= 0; i--) {
+        while (!st.empty() && nums[i] > nums[st.top()]) {
+            int top = st.top();
+            st.pop();
+            pge[top] = nums[i];
+        }
+        st.push(i);
+    }
+    return pge;
+}
+
 int main() {
     vector<int> nums = {4,5,2,10};
     vector<int> result = nextGreater(nums);
@@ -26,4 +43,12 @@ int main() {
         cout << n << " ";
     }
     cout << "\n\n";
+
+    vector<int> pgeResult = previousGreater(nums);
+    cout << "Previoius greater element array of the given array is: ";
+    for (int n: pgeResult) {
+        cout << n << " ";
+    }
+    cout << "\n\n";
+
 }
