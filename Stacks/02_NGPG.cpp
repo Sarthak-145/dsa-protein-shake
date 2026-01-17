@@ -18,7 +18,8 @@ vector<int> nextGreater(vector<int>& nums) {
     return ngeNums;
 } 
 
-vector<int> previousGreater(vector<int>& nums) {
+//this is logically right, but still it's nge in reverse order
+vector<int> previousGreaterOld(vector<int>& nums) {
     int size = nums.size();
     stack<int> st;
     vector<int> pge(size, -1);
@@ -35,6 +36,25 @@ vector<int> previousGreater(vector<int>& nums) {
     return pge;
 }
 
+
+//this one returns indexes and it's forward loop as well.
+vector<int> previousGreater(vector<int>& nums) {
+    int size = nums.size();
+    stack<int> st;
+    vector<int> pge(size, -1);
+
+    for (int i=0; i < size; i++) {
+        while (!st.empty() && nums[i] > nums[st.top()]) {
+            st.pop();
+        }
+        if (!st.empty()) {
+            pge[i] = st.top();
+        }
+        st.push(i);
+    }
+    return pge;
+}
+
 int main() {
     vector<int> nums = {4,5,2,10};
     vector<int> result = nextGreater(nums);
@@ -45,7 +65,7 @@ int main() {
     cout << "\n\n";
 
     vector<int> pgeResult = previousGreater(nums);
-    cout << "Previoius greater element array of the given array is: ";
+    cout << "Previous greater element array of the given array is: ";
     for (int n: pgeResult) {
         cout << n << " ";
     }
