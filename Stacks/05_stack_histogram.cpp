@@ -30,7 +30,32 @@ int maxAreaHistogram(vector<int>& heights) {
     return maxarea;
 }
 
+int maxRectMatrix(vector<vector<char>>& matrix) {
+    int rows = matrix.size();
+    int cols = matrix[0].size();
+    int result = 0;
+
+    vector<int> heights(cols, 0);
+
+    for (int i=0; i<rows; i++) {
+        for (int j=0; j<cols; j++) {
+            // careful and use same data type in comparison and decalration. 
+            heights[j] = matrix[i][j] == '1'? heights[j] + 1 : 0; 
+        }
+        // take max of all rows 
+        result = max(result, maxAreaHistogram(heights));
+    }
+    return result;
+}
+
 int main() {
     vector<int> heights = {2,1,5,6,2,3};
     cout << "Max area of this histogram is: " << maxAreaHistogram(heights) << "\n\n";
+
+    vector<vector<char>> matrix = {
+        {'1', '1', '1'},
+        {'1', '1', '1'}
+    };
+
+    cout << "Max rectangle of this matrix: " << maxRectMatrix(matrix) << "\n\n";
 }
