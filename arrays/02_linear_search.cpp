@@ -16,6 +16,7 @@ int linearSearch(int array[], int size, int target) {
 }
 
 int findMax(int array[], int size) {
+    if (size == 0) return 0;
     // int max = 0; => won't work for -ve numbers so..
     int max = array[0];
     for (int i = 0; i < size; i++) {
@@ -27,6 +28,7 @@ int findMax(int array[], int size) {
 }
 
 int findMin(int array[], int size) {
+    if (size == 0) return 0;
     // this 1e6 is totally from my JS mind, I don't know whether it works here
     // int min = 1e6;
     int min = array[0];
